@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Language Switcher Popup module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function language_switcher_popup_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case "help.page.language_switcher_popup":
+      $output = "<h3>" . t("About") . "</h3>";
+      $output .= "<p>" . t("This module shows a confirmation popup when users switch languages, warning them that their search filters will be reset.") . "</p>";
+      $output .= "<h3>" . t("Configuration") . "</h3>";
+      $output .= "<p>" . t("Configure the popup messages at <a href=\":config\">Language Switcher Popup Settings</a>.", [
+        ":config" => \Drupal\Core\Url::fromRoute("language_switcher_popup.settings")->toString(),
+      ]) . "</p>";
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function language_switcher_popup_page_attachments(array &$attachments) {
+  // Attach the library to all pages.
+  $attachments["#attached"]["library"][] = "language_switcher_popup/language_switcher_popup";
+
+  // Pass configuration to JavaScript.
+  $config = \Drupal::config("language_switcher_popup.settings");
+  $language_manager = \Drupal::languageManager();
+  $languages = $language_manager->getLanguages();
+
+  $settings = [
+    "enabled" => $config->get("enable_popup") ?? TRUE,
+  ];
+
+  foreach ($languages as $langcode => $language) {
+    $settings[$langcode] = [
+      "message" => $config->get("message_{$langcode}") ?: t("Switching languages will reset your search filters. Do you want to continue?"),
+      "confirm" => $config->get("confirm_{$langcode}") ?: t("Continue"),
+      "cancel" => $config->get("cancel_{$langcode}") ?: t("Cancel"),
+    ];
+  }
+
+  $attachments["#attached"]["drupalSettings"]["languageSwitcherPopup"] = $settings;
+}

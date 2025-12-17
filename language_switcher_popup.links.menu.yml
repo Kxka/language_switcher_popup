@@ -1,0 +1,6 @@
+language_switcher_popup.settings:
+  title: 'Language Switcher Popup'
+  description: 'Configure language switcher popup messages'
+  route_name: language_switcher_popup.settings
+  parent: system.admin_config_regional
+  weight: 10

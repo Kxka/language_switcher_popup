@@ -1,0 +1,7 @@
+name: Language Switcher Popup
+type: module
+description: "Shows a confirmation popup when users switch languages, warning them that search filters will be reset."
+core_version_requirement: ^9 || ^10
+package: Custom
+dependencies:
+  - drupal:language

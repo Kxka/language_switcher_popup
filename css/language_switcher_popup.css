@@ -1,0 +1,208 @@
+/**
+ * @file
+ * Bootstrap 4 Modal styling for Language Switcher Popup
+ * Applied to Drupal Dialog API elements
+ */
+
+/* Modal wrapper - Bootstrap 4 style */
+.ui-dialog.language-switcher-popup-dialog {
+  position: fixed !important;
+  padding: 0 !important;
+  background-color: #fff !important;
+  margin: 1.75rem auto !important;
+  top: 50px !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+  width: 80% !important;
+  max-width: 500px !important;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+  border-radius: 0.3rem !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Title bar - Bootstrap modal header style */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  padding: 0.5rem 0.75rem !important;
+  background-color: #fff !important;
+  color: #212529 !important;
+  border: none !important;
+  min-height: auto !important;
+  border-bottom: 1px solid #dee2e6 !important;
+  border-top-left-radius: calc(0.3rem - 1px) !important;
+  border-top-right-radius: calc(0.3rem - 1px) !important;
+}
+
+/* Hide title text */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-title {
+  display: none !important;
+}
+
+/* Close button - Bootstrap style */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close {
+  color: #000 !important;
+  float: right !important;
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  opacity: 0.5 !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  margin: -0.5rem -0.75rem -0.5rem auto !important;
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  text-indent: 0 !important;
+  cursor: pointer !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close:hover,
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close:focus {
+  color: #000 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  opacity: 0.75 !important;
+}
+
+/* Hide all child elements */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close * {
+  display: none !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close {
+  font-size: 0 !important;
+}
+
+/* Show only the X symbol - Bootstrap style */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-titlebar-close:before {
+  content: "×" !important;
+  font-size: 1.5rem !important;
+  display: block !important;
+  line-height: 1 !important;
+}
+
+/* Modal content - Bootstrap modal body style */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-content {
+  position: relative !important;
+  flex: 1 1 auto !important;
+  padding: 1rem !important;
+  background-color: #fff !important;
+  border: none !important;
+  font-size: 1.125rem !important;
+  line-height: 1.5 !important;
+  color: #212529 !important;
+}
+
+/* Button pane - Bootstrap modal footer style */
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-buttonpane {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  padding: 0.5rem !important;
+  background-color: #fff !important;
+  border: none !important;
+  border-top: 1px solid #dee2e6 !important;
+  border-bottom-right-radius: calc(0.3rem - 1px) !important;
+  border-bottom-left-radius: calc(0.3rem - 1px) !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .ui-dialog-buttonset {
+  display: flex !important;
+  flex-direction: row-reverse !important;
+  justify-content: flex-start !important;
+  gap: 0.5rem !important;
+  float: none !important;
+}
+
+/* Cancel button - Bootstrap btn-light style */
+.ui-dialog.language-switcher-popup-dialog .button {
+  display: inline-block !important;
+  font-weight: 400 !important;
+  color: #212529 !important;
+  text-align: center !important;
+  vertical-align: middle !important;
+  background-color: #f8f9fa !important;
+  border: 1px solid #f8f9fa !important;
+  padding: 0.375rem 0.75rem !important;
+  margin: 0.25rem !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  min-width: 80px !important;
+  min-height: auto !important;
+  height: auto !important;
+  border-radius: 0.25rem !important;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .button:hover {
+  color: #212529 !important;
+  background-color: #e2e6ea !important;
+  border-color: #dae0e5 !important;
+  text-decoration: none !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .button:focus {
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.2rem rgba(216, 217, 219, 0.5) !important;
+}
+
+/* Continue button - Bootstrap btn-primary style */
+.ui-dialog.language-switcher-popup-dialog .button--primary {
+  color: #fff !important;
+  background-color: #007bff !important;
+  border-color: #007bff !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .button--primary:hover {
+  color: #fff !important;
+  background-color: #0069d9 !important;
+  border-color: #0062cc !important;
+}
+
+.ui-dialog.language-switcher-popup-dialog .button--primary:focus {
+  color: #fff !important;
+  background-color: #0069d9 !important;
+  border-color: #0062cc !important;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5) !important;
+}
+
+/* Backdrop overlay - Bootstrap modal backdrop style */
+.ui-widget-overlay {
+  position: fixed !important;
+  display: block !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow: auto !important;
+  background-color: #000 !important;
+  opacity: 0.5 !important;
+  z-index: 1040 !important;
+}
+
+/* Ensure dialog is above backdrop */
+.ui-dialog.language-switcher-popup-dialog {
+  z-index: 1050 !important;
+}
+
+/* Responsive - Bootstrap breakpoints */
+@media (min-width: 576px) {
+  .ui-dialog.language-switcher-popup-dialog {
+    max-width: 500px !important;
+    margin: 1.75rem auto !important;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .ui-dialog.language-switcher-popup-dialog {
+    width: 90% !important;
+    margin: 0.5rem !important;
+  }
+}

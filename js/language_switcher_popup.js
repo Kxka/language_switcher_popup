@@ -1,0 +1,93 @@
+/**
+ * @file
+ * Language Switcher Popup behavior.
+ *
+ * Displays a popup confirmation dialog before switching languages.
+ * Only appears when search parameters are present in the URL.
+ */
+
+(function ($, Drupal, once) {
+
+  'use strict';
+
+  function showLanguageSwitchDialog(config, targetUrl) {
+
+    var dialogContent = $('<div></div>').html('<p>' + config.message + '</p>');
+
+    // Build the popup
+    var dialog = Drupal.dialog(dialogContent[0], {
+      title: 'Language Switch',
+      width: 550,
+      draggable: false,
+      dialogClass: 'language-switcher-popup-dialog', // Custom CSS 
+      buttons: [
+        {
+          // Confirm button
+          text: config.confirm,
+          class: 'button button--primary',
+          click: function () {
+            window.location.href = targetUrl;
+          }
+        },
+        { 
+          //Cancel Button
+          text: config.cancel,
+          class: 'button',
+          click: function () {
+            dialog.close();
+          }
+        }
+      ],
+      //remove popup when closed
+      close: function (event) {
+        $(event.target).remove();
+      }
+    });
+
+    // Display the modal dialog
+    dialog.showModal();
+
+    // Add CSS class
+    var $dialogElement = $(dialogContent[0]).closest('.ui-dialog');
+    $dialogElement.addClass('language-switcher-popup-dialog');
+  }
+
+  Drupal.behaviors.languageSwitcherPopup = {
+    attach: function (context, settings) {
+      // Check if popup is enabled
+      if (!settings.languageSwitcherPopup || settings.languageSwitcherPopup.enabled === false) {
+        return;
+      }
+
+      // Only show popup when search parameters are present
+      if (!window.location.search) {
+        return;
+      }
+
+      // Find language switcher links using hreflang
+      var selector = 'ul.links li a[hreflang]';
+      var languageLinks = once('language-switcher-popup', selector, context);
+
+      // Process each language
+      languageLinks.forEach(function (link) {
+        var $link = $(link);
+        var targetUrl = $link.attr('href');       // link
+        var targetLang = $link.attr('hreflang');  // langcode
+
+        // Check language has valid config
+        if (!targetLang || !settings.languageSwitcherPopup || !settings.languageSwitcherPopup[targetLang]) {
+          return;
+        }
+        var config = settings.languageSwitcherPopup[targetLang];
+
+        // Attach click handler to show confirmation dialog
+        $link.on('click', function (e) {
+          e.preventDefault();      // Stop default link navigation
+          e.stopPropagation();     // Stop event bubbling
+          showLanguageSwitchDialog(config, targetUrl);
+        });
+      });
+    }
+  };
+
+})(jQuery, Drupal, once);

@@ -1,0 +1,13 @@
+language_switcher_popup:
+  version: 1.x
+  js:
+    js/language_switcher_popup.js: {}
+  css:
+    theme:
+      css/language_switcher_popup.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.dialog
+    - core/drupal.ajax
+    - core/once

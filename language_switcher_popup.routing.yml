@@ -1,0 +1,7 @@
+language_switcher_popup.settings:
+  path: '/admin/config/regional/language-switcher-popup'
+  defaults:
+    _form: '\Drupal\language_switcher_popup\Form\LanguageSwitcherPopupSettingsForm'
+    _title: 'Language Switcher Popup Settings'
+  requirements:
+    _permission: 'administer site configuration'
