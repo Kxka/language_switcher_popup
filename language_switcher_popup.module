@@ -14,7 +14,7 @@ function language_switcher_popup_help($route_name, RouteMatchInterface $route_ma
   switch ($route_name) {
     case "help.page.language_switcher_popup":
       $output = "<h3>" . t("About") . "</h3>";
-      $output .= "<p>" . t("This module shows a confirmation popup when users switch languages, warning them that their search filters will be reset.") . "</p>";
+      $output .= "<p>" . t("Shows a confirmation popup that search filters will be reset when users switch languages") . "</p>";
       $output .= "<h3>" . t("Configuration") . "</h3>";
       $output .= "<p>" . t("Configure the popup messages at <a href=\":config\">Language Switcher Popup Settings</a>.", [
         ":config" => \Drupal\Core\Url::fromRoute("language_switcher_popup.settings")->toString(),
@@ -36,7 +36,7 @@ function language_switcher_popup_page_attachments(array &$attachments) {
   $languages = $language_manager->getLanguages();
 
   $settings = [
-    "enabled" => $config->get("enable_popup") ?? TRUE,
+    "enabled" => (bool) ($config->get("enable_popup") ?? TRUE),
   ];
 
   foreach ($languages as $langcode => $language) {

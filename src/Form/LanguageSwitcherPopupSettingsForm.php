@@ -60,13 +60,12 @@ class LanguageSwitcherPopupSettingsForm extends ConfigFormBase {
     $languages = $this->languageManager->getLanguages();
 
     $form["description"] = [
-      "#markup" => "<p>" . $this->t("Configure the confirmation popup messages for each language. When users click a language switcher link, they will see a confirmation dialog with these messages.") . "</p>",
+      "#markup" => "<p>" . $this->t("Configure the popup messages when users switch languages. The popup will only appear when search parameters are present.") . "</p>",
     ];
 
     $form["enable_popup"] = [
       "#type" => "checkbox",
-      "#title" => $this->t("Enable popup confirmation"),
-      "#description" => $this->t("Show a confirmation popup when users switch languages. The popup will only appear when search parameters are present in the URL."),
+      "#title" => $this->t("Enable Popup"),
       "#default_value" => $config->get("enable_popup") ?? TRUE,
     ];
 
@@ -80,7 +79,6 @@ class LanguageSwitcherPopupSettingsForm extends ConfigFormBase {
       $form[$langcode]["message_{$langcode}"] = [
         "#type" => "textarea",
         "#title" => $this->t("Popup Message"),
-        "#description" => $this->t("The warning message shown in the popup dialog."),
         "#default_value" => $config->get("message_{$langcode}") ?: $this->t("Switching languages will reset your search filters. Do you want to continue?"),
         "#rows" => 3,
       ];
@@ -88,7 +86,6 @@ class LanguageSwitcherPopupSettingsForm extends ConfigFormBase {
       $form[$langcode]["confirm_{$langcode}"] = [
         "#type" => "textfield",
         "#title" => $this->t("Confirm Button Text"),
-        "#description" => $this->t("The text for the confirmation button."),
         "#default_value" => $config->get("confirm_{$langcode}") ?: $this->t("Continue"),
         "#required" => TRUE,
       ];
@@ -96,7 +93,6 @@ class LanguageSwitcherPopupSettingsForm extends ConfigFormBase {
       $form[$langcode]["cancel_{$langcode}"] = [
         "#type" => "textfield",
         "#title" => $this->t("Cancel Button Text"),
-        "#description" => $this->t("The text for the cancel button."),
         "#default_value" => $config->get("cancel_{$langcode}") ?: $this->t("Cancel"),
         "#required" => TRUE,
       ];

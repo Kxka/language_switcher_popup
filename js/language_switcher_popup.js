@@ -55,12 +55,7 @@
   Drupal.behaviors.languageSwitcherPopup = {
     attach: function (context, settings) {
       // Check if popup is enabled
-      if (!settings.languageSwitcherPopup || settings.languageSwitcherPopup.enabled === false) {
-        return;
-      }
-
-      // Only show popup when search parameters are present
-      if (!window.location.search) {
+      if (!settings.languageSwitcherPopup || !settings.languageSwitcherPopup.enabled) {
         return;
       }
 
@@ -74,14 +69,19 @@
         var targetUrl = $link.attr('href');       // link
         var targetLang = $link.attr('hreflang');  // langcode
 
-        // Check language has valid config
+        // Check language has valid config, dont show popup if not valid
         if (!targetLang || !settings.languageSwitcherPopup || !settings.languageSwitcherPopup[targetLang]) {
           return;
         }
         var config = settings.languageSwitcherPopup[targetLang];
 
-        // Attach click handler to show confirmation dialog
+        // Attach click handler
         $link.on('click', function (e) {
+          // Always check search parameters before showing popup to prevent ajax issue
+          if (!window.location.search) {
+            return true;
+          }
+
           e.preventDefault();      // Stop default link navigation
           e.stopPropagation();     // Stop event bubbling
           showLanguageSwitchDialog(config, targetUrl);
