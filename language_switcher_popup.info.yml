@@ -1,7 +1,7 @@
 name: Language Switcher Popup
 type: module
 description: "Shows a confirmation popup that search filters will be reset when users switch languages"
-core_version_requirement: ^9 || ^10
+core_version_requirement: ^9 || ^10 || ^11
 package: Multilingual
 configure: language_switcher_popup.settings
 dependencies:
