@@ -3,6 +3,6 @@
   "type": "drupal-module",
   "description": "Shows a confirmation popup that search filters will be reset when users switch languages",
   "require": {
-    "drupal/core": "^9 || ^10" || ^11
+    "drupal/core": "^9 || ^10 || ^11"
   }
 }
