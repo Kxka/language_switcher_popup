@@ -47,9 +47,13 @@
     // Display the modal dialog
     dialog.showModal();
 
-    // Add CSS class
+    // Add CSS class and style primary button
     var $dialogElement = $(dialogContent[0]).closest('.ui-dialog');
     $dialogElement.addClass('language-switcher-popup-dialog');
+
+    // Style the Continue button (first button) with blue color using !important
+    var $primaryBtn = $dialogElement.find('.ui-dialog-buttonset button:first-child');
+    $primaryBtn.attr('style', 'background-color: #007bff !important; background-image: none !important; border-color: #007bff !important; color: #fff !important;');
   }
 
   Drupal.behaviors.languageSwitcherPopup = {
@@ -60,7 +64,8 @@
       }
 
       // Find language switcher links using hreflang
-      var selector = 'ul.links li a[hreflang]';
+      // Support both standard Drupal markup and Bootstrap Barrio theme markup
+      var selector = 'ul.links li a[hreflang], nav.links-inline a[hreflang]';
       var languageLinks = once('language-switcher-popup', selector, context);
 
       // Process each language
